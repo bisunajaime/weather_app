@@ -11,9 +11,7 @@ const wind_status = document.querySelector('#wind_status')
 const weather_desc = document.querySelector('#weather_desc')
 const searched_city = document.querySelector('#searched_city')
 const search_btn = document.querySelector('#search_btn')
-const others = document.querySelectorAll('.others')
 const initial_location = "Manila"
-
 
 
 const mapDataToHtml = response => {
@@ -43,20 +41,41 @@ const mapDataToHtml = response => {
         humidity_status.innerHTML = `${main.humidity}%`
         wind_status.innerHTML = `${wind.speed} m/s`
         weather_desc.innerHTML = `${weather[0].description}`
+
     }
-
-
 }
+
+const refreshRecents = () => {
+    const others = document.querySelectorAll('.others')
+    for (const cty of others) {
+        cty.addEventListener('click', () => {
+            let toSearch = cty.innerHTML
+            search_weather(toSearch)
+        })
+    }
+}
+const appendElemToList = text => {
+    const recent_searches = document.querySelectorAll('.others')
+    const other_places = document.querySelector('#other_places')
+    console.log(recent_searches.length)
+    const node = document.createElement('span')
+    let textNode = document.createTextNode(text)
+    node.appendChild(textNode)
+    node.setAttribute('class', 'others')
+    console.log(node)
+    other_places.insertBefore(node, other_places.children[0])
+    refreshRecents()
+
+    if (recent_searches.length >= 5) {
+        // other_places.appendChild(node)
+        other_places.removeChild(other_places.childNodes[other_places.children.length])
+    }
+}
+
 setInterval(() => {
     time.innerHTML = new Date().toLocaleTimeString();
 }, 1000);
-for (const cty of others) {
-    console.log(cty)
-    cty.addEventListener('click', () => {
-        let toSearch = cty.innerHTML
-        search_weather(toSearch)
-    })
-}
+
 
 document.querySelector('input[type=text]').addEventListener('keydown', function (e) {
     if (e.which == 13) {
@@ -66,6 +85,7 @@ document.querySelector('input[type=text]').addEventListener('keydown', function 
             searched_city.value = ""
         } else {
             search_weather(searched_city.value)
+            appendElemToList(searched_city.value)
             searched_city.value = ""
         }
     }
@@ -77,6 +97,7 @@ search_btn.addEventListener('click', () => {
         searched_city.value = ""
     } else {
         search_weather(searched_city.value)
+        appendElemToList(searched_city.value)
         searched_city.value = ""
     }
 })
