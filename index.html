@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherOrNot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="screen_warninig">
+        <div class="box">
+            <span>😅 Sorry, website isn't mobile responsive yet. <br />Width must be greater than 1280px and height must
+                be greater than 850px</span>
+        </div>
+    </div>
+    <main>
+
+        <section class="weather_stats">
+            <span>WeatherOrNot</span>
+            <div class="current_weather">
+                <span id="degrees">08&deg;</span>
+                <div class="country_weather">
+                    <h1 id="city">London</h1>
+                    <span id="as_of">06:09 - Sunday, 6 Oct'19</span>
+                </div>
+                <div class="weather_state">
+                    <img id="weather_icon" src="" alt="rainy" height="40" width="40" />
+                    <span id="weather">Rainy</span>
+                </div>
+            </div>
+        </section>
+        <section class="weather_info">
+            <div class="search_component">
+                <input id="searched_city" type="text" placeholder="Another location" />
+                <div id="search_btn" class="search_btn">
+                    <img src="https://image.flaticon.com/icons/svg/709/709592.svg" height="20" width="20" alt="" />
+                </div>
+            </div>
+            <div class="other_places">
+                <span class="others">Manila</span>
+                <span class="others">Manchester</span>
+                <span class="others">New York</span>
+                <span class="others">Spain</span>
+            </div>
+            <hr />
+            <div class="weather_details">
+                <h1>Weather Details</h1>
+                <div class="weather_details_info">
+                    <div class="weather_details_info_item">
+                        <span>Cloudy</span>
+                        <span id="cloudy_status">86%</span>
+                    </div>
+                    <div class="weather_details_info_item">
+                        <span>Humidity</span>
+                        <span id="humidity_status">62%%</span>
+                    </div>
+                    <div class="weather_details_info_item">
+                        <span>Wind</span>
+                        <span id="wind_status">8km/h</span>
+                    </div>
+                    <div class="weather_details_info_item">
+                        <span>Weather</span>
+                        <span id="weather_desc">8mm</span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="time">
+                <span>Design and Developed by Jaime Bisuna</span>
+                <h2>Current Time</h2>
+                <h1 id="time">12:00:00 PM</h1>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
