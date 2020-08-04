@@ -82,7 +82,7 @@ search_btn.addEventListener('click', () => {
 })
 
 const search_weather = (search) => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}&units=metric`)
         .then(res => res.json())
         .then(mapDataToHtml)
         .catch(() => alert('City not found'))
