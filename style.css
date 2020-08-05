@@ -89,7 +89,6 @@ main {
     border-bottom-right-radius: 25px;
     grid-column: 2/3;
     height: 100%;
-    overflow-y: scroll;
     width: 100%;
     backdrop-filter: blur(20px) brightness(60%);
 }
