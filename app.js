@@ -11,6 +11,10 @@ const wind_status = document.querySelector('#wind_status')
 const weather_desc = document.querySelector('#weather_desc')
 const searched_city = document.querySelector('#searched_city')
 const search_btn = document.querySelector('#search_btn')
+// mobile
+const mobile_weather = document.querySelector('#mobile_weather')
+const mobile_country = document.querySelector('#mobile_country')
+const mobile_time = document.querySelector('#mobile_time')
 const initial_location = "Manila"
 
 
@@ -32,16 +36,20 @@ const mapDataToHtml = response => {
         let {
             temp
         } = main
+        let currentTime = `${new Date(dt * 1000).toDateString()}`
         city.innerHTML = `${name}, ${sys.country}`
         degrees.innerHTML = `${temp}&deg;`
         weather_text.innerHTML = weather[0].main
         weather_icon.attributes.src.value = `http://openweathermap.org/img/wn/${weather[0].icon}@4x.png`
-        as_of.innerHTML = `${new Date(dt * 1000).toDateString()}`
+        as_of.innerHTML = currentTime
         cloudy_status.innerHTML = `${clouds.all}%`
         humidity_status.innerHTML = `${main.humidity}%`
         wind_status.innerHTML = `${wind.speed} m/s`
         weather_desc.innerHTML = `${weather[0].description}`
 
+        mobile_country.innerHTML = `${name}, ${sys.country}`
+        mobile_weather.innerHTML = weather[0].main + ' ' + `${temp}&deg;`
+        mobile_time.innerHTML = currentTime
     }
 }
 
