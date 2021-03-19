@@ -12,6 +12,11 @@
 </head>
 
 <body>
+    <div class="blur_overlay">
+
+        <img src="https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1275&q=80"
+            alt="bg_img" id="bg_img" class="bg_img">
+    </div>
     <div class="screen_warninig">
         <div class="box">
             <span>😅 Sorry, website isn't mobile responsive yet. <br />Width must be greater than 1280px and height must
@@ -19,7 +24,7 @@
         </div>
     </div>
     <main>
-
+        <img style="display: none;" src="" alt="" id="my_img">
         <section class="weather_stats">
             <span id="title">🌤️ WeatherOrNot</span>
             <div class="current_weather">
@@ -79,7 +84,6 @@
             </div>
         </section>
     </main>
-
     <script src="app.js"></script>
 </body>
 

@@ -6,7 +6,21 @@
 }
 
 body {
-    background: rgb(123, 165, 123);
+    background-color: rgb(2, 2, 2);
+}
+
+#bg_img {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.blur_overlay {
+    position: absolute;
+    filter: blur(8px);
+    height: 100vh;
+    width: 100%;
 }
 
 main {

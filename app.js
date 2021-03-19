@@ -11,12 +11,22 @@ const wind_status = document.querySelector('#wind_status')
 const weather_desc = document.querySelector('#weather_desc')
 const searched_city = document.querySelector('#searched_city')
 const search_btn = document.querySelector('#search_btn')
+const bg_img = document.querySelector('#bg_img')
 // mobile
 const mobile_weather = document.querySelector('#mobile_weather')
 const mobile_country = document.querySelector('#mobile_country')
 const mobile_time = document.querySelector('#mobile_time')
+
+const main_elem = document.querySelector('main')
 const initial_location = "Manila"
 
+let weather_imgs = [
+    "https://images.unsplash.com/photo-1516912481808-3406841bd33c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=683&q=80",
+    "https://images.unsplash.com/photo-1592210454359-9043f067919b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1584267385494-9fdd9a71ad75?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1583591749989-0d1e8c5bbf42?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+]
 
 const mapDataToHtml = response => {
     if (response.cod != 200) {
@@ -53,6 +63,14 @@ const mapDataToHtml = response => {
     }
 }
 
+const mapImageToBackground = response => {
+
+    bg_img.src = response.urls.regular
+    main_elem.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0, 0), rgba(0,0,0, 0.73)), url(${response.urls.regular})`
+    main_elem.style.backgroundRepeat = `no-repeat`
+    main_elem.style.backgroundSize = `cover`
+}
+
 const refreshRecents = () => {
     const others = document.querySelectorAll('.others')
     for (const cty of others) {
@@ -65,12 +83,12 @@ const refreshRecents = () => {
 const appendElemToList = text => {
     const recent_searches = document.querySelectorAll('.others')
     const other_places = document.querySelector('#other_places')
-    console.log(recent_searches.length)
+
     const node = document.createElement('span')
     let textNode = document.createTextNode(text)
     node.appendChild(textNode)
     node.setAttribute('class', 'others')
-    console.log(node)
+
     other_places.insertBefore(node, other_places.children[0])
     refreshRecents()
 
@@ -115,4 +133,15 @@ const search_weather = (search) => {
         .then(res => res.json())
         .then(mapDataToHtml)
         .catch(() => alert('City not found'))
+    fetch('https://api.unsplash.com/photos/random?client_id=0bZSW7GwQzaRbcZql1MuFvN_D86pxzFwEHzo_lgiahs&query=weather')
+        .then(res => res.json())
+        .then(mapImageToBackground)
+        .catch(e => {
+            const rand = Math.floor((Math.random() * weather_imgs.length - 1) + 1);
+
+            bg_img.src = weather_imgs[rand]
+            main_elem.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0, 0), rgba(0,0,0, 0.73)), url(${weather_imgs[rand]})`
+            main_elem.style.backgroundRepeat = `no-repeat`
+            main_elem.style.backgroundSize = `cover`
+        })
 }
